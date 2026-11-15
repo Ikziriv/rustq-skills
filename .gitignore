@@ -1,0 +1,13 @@
+# OS / editor noise
+.DS_Store
+Thumbs.db
+*.swp
+
+# Installed by `npx skills add` when testing locally
+.agents/
+.skills/
+skills-lock.json
+node_modules/
+
+# Test output
+*.log
