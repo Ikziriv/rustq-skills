@@ -4,6 +4,30 @@ All notable changes to this pack are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/), and the project aims to follow semantic versioning
 for the skill set.
 
+## [1.2.0] - 2026-11-16
+
+### Added
+
+- `rust-algorithms` — algorithm and data-structure selection by constraint and cost, with decision
+  tables, complexity trade-offs and Rust-specific pitfalls.
+- `rust-algorithms/references/catalog.md` — all 392 algorithms from
+  [TheAlgorithms/Rust](https://github.com/TheAlgorithms/Rust), grouped by 23 categories and linked to
+  upstream source.
+- `rust-algorithms/references/implementations.md` — audit table for adapting reference code (panics,
+  overflow, recursion, allocation), category risk tiers (crypto and ML are educational only), and a
+  porting procedure.
+- `rust-algorithms-upstream` — 421 unmodified `.rs` files from TheAlgorithms/Rust at commit
+  `fed66cb0c74c4a939ec5163648458a8c2b46fd4c`, grouped by category under `src/`, with the upstream MIT
+  `LICENSE` and a `NOTICE.md`. Optional: skip it with an explicit `-s` list to save 3 MB.
+- `scripts/sync-algorithms-catalog.mjs` — regenerates the catalog from upstream `DIRECTORY.md` and
+  resolves a stale upstream path.
+- Router: an “Algorithms and data” lookup section plus both skills.
+
+### Changed
+
+- `rust-algorithms` ships guidance only (~80 KB); implementations live in the sibling
+  `rust-algorithms-upstream` skill so the guidance installs without the 3 MB source tree.
+
 ## [1.0.0] - 2026-11-15
 
 Initial release: one flat, globally installable set of 44 skills for the global tier

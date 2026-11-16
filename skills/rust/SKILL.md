@@ -40,6 +40,7 @@ instead of repeating it.
 | Database access: sqlx / diesel / sea-orm, pools, transactions, migrations | `rust-database` |
 | Tracing spans, metrics, OpenTelemetry, log hygiene | `rust-observability` |
 | Roles, ABAC, policy decisions, deny-overrides, XACML | `rust-xacml` |
+| Algorithm or data-structure choice by constraint and cost | `rust-algorithms` |
 
 ## Expert — specialized
 
@@ -149,6 +150,15 @@ instead of repeating it.
 | eBPF, kernel modules | `rust-ebpf` |
 | GPU compute, CUDA, shaders | `rust-gpu` |
 | DPDK, packet processing | `rust-dpdk` |
+
+### Algorithms and data
+
+| Symptom | Skill |
+|---|---|
+| Which sort / search / structure, and at what cost | `rust-algorithms` |
+| Graph traversal, shortest path, SCC, matching, max flow | `rust-algorithms` |
+| DP, string matching, number theory, bit tricks, backtracking | `rust-algorithms` |
+| Read the reference source of a named algorithm | `rust-algorithms-upstream` |
 
 ### Code quality, testing, learning
 

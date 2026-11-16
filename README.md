@@ -3,7 +3,7 @@
 An installable pack of **Rust** and **WebAssembly** agent skills, built for the global skill tier
 (`~/.agents/skills/`) so one install serves every project you open.
 
-Forty-four skills, one flat set, three tiers: a **router** you invoke by hand, a **workflow**
+Forty-six skills, one flat set, three tiers: a **router** you invoke by hand, a **workflow**
 skill the agent picks up on its own, and topic skills that load only when their description fires.
 
 Scope: the global tier only, one install, no bundles and no platform-specific skills. Everything
@@ -37,6 +37,14 @@ cd rustq-skills && npx skills add . -g -a zed
 ```
 
 No CLI? Copy each `skills/<name>/` folder into `~/.agents/skills/` — the layout is the spec.
+
+The only optional pairing is `rust-algorithms-upstream` (3 MB of reference sources). Skip it with an
+explicit list when you only want the guidance:
+
+```bash
+npx skills add Ikziriv/rustq-skills -g -a zed -s '*' --copy -y   # everything
+npx skills add Ikziriv/rustq-skills -g -a zed -s rust rust-skill   # or name what you need
+```
 
 ## Skills
 
@@ -74,6 +82,8 @@ No CLI? Copy each `skills/<name>/` folder into `~/.agents/skills/` — the layou
 | `rust-database` | ✅ | sqlx / diesel / sea-orm, pools, transactions, migrations, N+1 |
 | `rust-observability` | ✅ | Tracing spans, metrics, OpenTelemetry, log levels, redaction |
 | `rust-xacml` | ✅ | Roles, ABAC, policy decisions, deny-overrides, XACML / Cedar / Casbin |
+| `rust-algorithms` | ✅ | Algorithm and data-structure choice by cost, 392 indexed algorithms |
+| `rust-algorithms-upstream` | ✅ | Reference source: 421 vendored `.rs` files from TheAlgorithms/Rust (optional, 3 MB) |
 
 ### Expert — specialized
 
@@ -133,7 +143,8 @@ Three rules keep the pack from turning into a pile:
 2. **Router is the index, not a duplicate.** `/rust` answers "which skill" and stops; it never
    restates a skill's content.
 3. **Flat, no bundles.** One global install ships the whole set; there are no subsets, categories
-   or optional groups to choose between.
+   or optional groups to choose between. The single exception is the 3 MB `rust-algorithms-upstream`
+   source skill, which you can omit by naming the skills you want.
 
 Progressive disclosure does the rest: `SKILL.md` stays short and points at `references/` or
 `rules/`, and those files load only when the pointer fires.
@@ -167,6 +178,15 @@ Checks every `skills/**/SKILL.md`: frontmatter parses, `name` is lowercase kebab
 folder, `description` is present and within the 1024-character budget, no duplicate names, and every
 relative link resolves. CI runs the same script on push and pull request.
 
+The algorithm catalog is generated from upstream rather than hand-maintained:
+
+```bash
+node scripts/sync-algorithms-catalog.mjs
+```
+
+The upstream `src/` tree is vendored as the sibling `rust-algorithms-upstream` skill (MIT, pinned
+commit); the catalog links each algorithm to its upstream source.
+
 ## Credits
 
 Attribution for every upstream repository, book and rule set this pack is built on lives in
@@ -178,4 +198,4 @@ MIT — see [LICENSE](LICENSE). Vendored content keeps its own license; see [CRE
 
 ## Version
 
-`1.0.0` — see [CHANGELOG.md](CHANGELOG.md).
+`1.2.0` — see [CHANGELOG.md](CHANGELOG.md).
